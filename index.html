@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Panel Admin</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #fff; }
+    .card {
+      background: #1e1e1e;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+    button {
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .confirmar { background: green; color: white; }
+    .pendiente { color: orange; }
+    .activo { color: lightgreen; }
+    .vencido { color: red; }
+    img { max-width: 200px; display: block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>Panel de Pedidos</h1>
+
+<div id="pedidos"></div>
+
+<script>
+async function cargarPedidos() {
+  const res = await fetch("http://localhost:3000/pedidos");
+  const data = await res.json();
+
+  const contenedor = document.getElementById("pedidos");
+  contenedor.innerHTML = "";
+
+  data.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "card";
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Streaming Premium</title>
+</head>
+<body>
+
+  <h1>Comprar plan</h1>
+
+  <select id="plan">
+    <option value="Basico">Básico - S/10</option>
+    <option value="Premium">Premium - S/20</option>
+  </select>
+
+  <br><br>
+
+  <input type="text" id="nombre" placeholder="Tu nombre"><br><br>
+  <input type="email" id="email" placeholder="Tu correo"><br><br>
+
+  <p>Yapear al: <strong>9XXXXXXXX</strong></p>
+
+  <input type="file" id="comprobante"><br><br>
+
+  <button onclick="enviar()">Enviar comprobante</button>
+
+  <script>
+    async function enviar() {
+      const formData = new FormData();
+      formData.append("nombre", document.getElementById("nombre").value);
+      formData.append("email", document.getElementById("email").value);
+      formData.append("plan", document.getElementById("plan").value);
+      formData.append("comprobante", document.getElementById("comprobante").files[0]);
+
+      await fetch("http://localhost:3000/compra", {
+        method: "POST",
+        body: formData
+      });
+
+      alert("Pedido enviado. Espera confirmación.");
+    }
+  </script>
+
+</body>
+</html>
