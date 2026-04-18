@@ -1,32 +1,32 @@
 const express = require("express");
-const multer = require("multer");
+
 const cors = require("cors");
 const path = require("path");
-
+upload.single("comprobante")
 const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
-
+upload.single("comprobante")
 // Servir frontend
 app.use(express.static(path.join(__dirname)));
-
+upload.single("comprobante")
 // Servir uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Config multer
-const storage = multer.diskStorage({
+
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
 });
-const upload = multer({ storage });
+upload.single("comprobante")
 
 // Base simple
 let pedidos = [];
 
 // Rutas
-app.post("/compra", upload.single("comprobante"), (req, res) => {
+app.post("/compra", (req, res) => {
   const { nombre, email, plan } = req.body;
 
   const nuevo = {
