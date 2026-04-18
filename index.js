@@ -4,6 +4,9 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+app.use(express.static(__dirname));
+app.use("/uploads", express.static("uploads"));
 app.use(express.static(__dirname));
 // Servir imágenes
 app.use("/uploads", express.static("uploads"));
@@ -77,4 +80,5 @@ setInterval(() => {
 }, 60000);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Servidor listo"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", () => console.log("Servidor listo"));
