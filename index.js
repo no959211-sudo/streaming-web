@@ -4,8 +4,8 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
-
-// Servir imágenes
+app.use(express.static(__dirname));
+// Servir imÃ¡genes
 app.use("/uploads", express.static("uploads"));
 
 // Configurar subida de archivos
@@ -65,7 +65,7 @@ app.post("/confirmar/:id", (req, res) => {
   res.send("Pago confirmado");
 });
 
-// Detectar vencidos automáticamente
+// Detectar vencidos automÃ¡ticamente
 setInterval(() => {
   const hoy = new Date();
 
